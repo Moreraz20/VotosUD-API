@@ -1,16 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
 import { Document } from 'mongoose';
-export type VotoDocument = Voto & Document;
+export type CanditoDocument = Candidato & Document;
 
 @Schema()
-export class Voto {
+export class Candidato {
   @Prop({ required: true })
-  candidato: ObjectId;
+  nombre: string;
   @Prop({ required: true })
   partido: string;
+  @Prop({ required: true })
+  cedula: string;
   @Prop({ required: true })
   created_at: Date;
 }
 
-export const VotoSchema = SchemaFactory.createForClass(Voto);
+export const CandidatoSchema = SchemaFactory.createForClass(Candidato);
