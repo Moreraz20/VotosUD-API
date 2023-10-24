@@ -1,13 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 export type VotoDocument = Voto & Document;
 
 @Schema()
 export class Voto {
-  @Prop({ required: true })
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'candidato',
+    required: true,
+  })
   candidato: ObjectId;
-  @Prop({ required: true })
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'partido',
+    required: true,
+  })
   partido: ObjectId;
   @Prop({ required: true })
   created_at: Date;

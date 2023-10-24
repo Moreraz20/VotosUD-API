@@ -10,6 +10,7 @@ import { CreateVotoDto } from './createVotoDto';
 import { ObjectId } from 'mongodb';
 import { UpdateVotoDto } from './updateVotoDto';
 import { ResponseUpdate } from './interfaceVoto';
+import { ResponseFind } from './interfaceFindVoto';
 
 @Injectable()
 export class VotosService {
@@ -21,6 +22,7 @@ export class VotosService {
   //Create voto
   async createVoto(createVotoDto: CreateVotoDto) {
     const dataVoto = new this.VotoModel(createVotoDto);
+    console.log(dataVoto);
     try {
       await dataVoto.save();
       return {
@@ -36,8 +38,46 @@ export class VotosService {
   }
 
   //List all Voto's
-  async findAll(): Promise<VotoDocument[]> {
-    return this.VotoModel.find();
+  async findAll(): Promise<ResponseFind[]> {
+    const query = this.VotoModel.aggregate([
+      {
+        $lookup: {
+          from: 'candidatos',
+          localField: 'candidato',
+          foreignField: '_id',
+          as: 'infoCandidato',
+        },
+      },
+      {
+        $unwind: {
+          path: '$infoCandidato',
+          preserveNullAndEmptyArrays: false,
+        },
+      },
+      {
+        $lookup: {
+          from: 'partidos',
+          localField: 'partido',
+          foreignField: '_id',
+          as: 'infoPartido',
+        },
+      },
+      {
+        $unwind: {
+          path: '$infoPartido',
+          preserveNullAndEmptyArrays: false,
+        },
+      },
+      {
+        $project: {
+          candidato: 0,
+          partido: 0,
+          __v: 0,
+        },
+      },
+    ]);
+
+    return query;
   }
 
   //find Voto by Id

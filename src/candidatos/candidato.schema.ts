@@ -1,13 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 export type CanditoDocument = Candidato & Document;
 
 @Schema()
 export class Candidato {
   @Prop({ required: true })
   nombre: string;
-  @Prop({ required: true })
+  @Prop({ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'partido',
+    required: true,
+  })
   partido: ObjectId;
   @Prop({ required: true })
   cedula: string;
