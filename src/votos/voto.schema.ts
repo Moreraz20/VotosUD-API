@@ -8,7 +8,7 @@ export class Voto {
   @Prop({ required: true })
   candidato: ObjectId;
   @Prop({ required: true })
-  partido: string;
+  partido: ObjectId;
   @Prop({ required: true })
   created_at: Date;
 }

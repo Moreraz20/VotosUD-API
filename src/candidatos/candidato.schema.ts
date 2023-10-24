@@ -8,7 +8,7 @@ export class Candidato {
   @Prop({ required: true })
   nombre: string;
   @Prop({ required: true })
-  partido: string;
+  partido: ObjectId;
   @Prop({ required: true })
   cedula: string;
   @Prop({ required: true })

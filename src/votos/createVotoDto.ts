@@ -3,10 +3,10 @@ import { ObjectId } from 'mongodb';
 export class CreateVotoDto {
   @IsNotEmpty()
   @IsString()
-  readonly candidato: string;
+  readonly candidato: ObjectId;
   @IsNotEmpty()
   @IsString()
-  readonly partido: string;
+  readonly partido: ObjectId;
   @IsNotEmpty()
   @IsString()
   readonly created_at: string;

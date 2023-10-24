@@ -6,7 +6,7 @@ export class CreateCandidatoDto {
   readonly nombre: string;
   @IsNotEmpty()
   @IsString()
-  readonly partido: string;
+  readonly partido: ObjectId;
   @IsNotEmpty()
   @IsString()
   readonly cedula: string;
