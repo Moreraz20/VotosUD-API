@@ -4,6 +4,11 @@ Andrés Felipe Morera Díaz
 
 Prueba número: tenologo-06
 
+## Video de funcionamiento:
+
+https://drive.google.com/file/d/1yxOT6a4QatuMnUsnaCA7woVDxiyGYqhn/view?usp=sharing
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
