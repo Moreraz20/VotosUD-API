@@ -7,7 +7,7 @@ export type CanditoDocument = Candidato & Document;
 export class Candidato {
   @Prop({ required: true })
   nombre: string;
-  @Prop({ 
+  @Prop({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'partido',
     required: true,
